@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyledCard } from "../styledComponets/StyledCard.styled";
 import Button from "./Button";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaGrinStars } from "react-icons/fa";
 const valueBtn = {
   one: "5%",
   two: "10%",
@@ -29,6 +29,8 @@ const Card = () => {
   const [people, setPeople] = useState(1);
   const [total, setTotal] = useState("0,00");
   const [tip, setTip] = useState(0);
+  const [showInput, setShowInput] = useState(false);
+  const [specialTip, setSpecialTip] = useState(0);
 
   const persentage = (value) => {
     let totalAmount;
@@ -43,6 +45,11 @@ const Card = () => {
     }
 
     setTotal(() => parseFloat(totalAmount).toFixed(2));
+  };
+  const onCustomTip = () => {
+    setShowInput(!showInput);
+
+    console.log(specialTip);
   };
 
   const reset = () => {
@@ -88,15 +95,31 @@ const Card = () => {
           <li onClick={() => persentage(50, inputValue)}>
             <Button value={valueBtn.five} />
           </li>
-          <li>
+          <li onClick={onCustomTip}>
             <Button
               value={valueBtn.six.value}
               bgcolor={valueBtn.six.bgcolor}
               color={valueBtn.six.color}
-            ></Button>
+            />
           </li>
         </ul>
       </div>
+      {showInput ? (
+        <div>
+          <h6>Special Tip</h6>
+          <span>
+            <FaGrinStars />
+          </span>
+          <input
+            type="number"
+            value={specialTip}
+            onFocus={() => setSpecialTip("")}
+            onChange={(e) => setSpecialTip(Number(e.currentTarget.value))}
+          />
+        </div>
+      ) : (
+        <div></div>
+      )}
       <div>
         <h6>Number of People</h6>
         <input

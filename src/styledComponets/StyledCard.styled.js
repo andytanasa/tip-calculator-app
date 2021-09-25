@@ -79,6 +79,13 @@ export const StyledCard = styled.div`
       outline: none;
       border: 0;
       margin: 10px auto 10px;
+      &::-webkit-outer-spin-button,
+      ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        &:hover {
+          -webkit-appearance: none;
+        }
+      }
     }
     span {
       color: ${({ theme }) => theme.neutral.darkGrayishCyanSec};
@@ -88,7 +95,32 @@ export const StyledCard = styled.div`
       font-size: 20px;
     }
   }
-  div:nth-child(4) {
+  & > div:nth-child(4) {
+    position: relative;
+    input {
+      text-align: right;
+      width: 300px;
+      font-size: 24px;
+      font-weight: 700;
+      padding: 10px;
+      padding-left: 30px;
+      padding-right: 20px;
+      background: ${({ theme }) => theme.neutral.lightGrayishCyan};
+      color: ${({ theme }) => theme.neutral.veryDarkCyan};
+      outline: none;
+      border: 0;
+      margin: 10px auto 10px;
+    }
+    span {
+      color: ${({ theme }) => theme.neutral.darkGrayishCyanSec};
+      position: absolute;
+      left: 50px;
+      top: 40px;
+      font-size: 20px;
+    }
+  }
+
+  div:nth-child(5) {
     margin: 30px;
     background-color: ${({ theme }) => theme.neutral.veryDarkCyan};
     color: white;
